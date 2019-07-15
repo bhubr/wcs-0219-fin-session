@@ -202,7 +202,7 @@ Sous `back`, puis sous `front`, on va installer le module `lint-staged`, qui lan
 
 Puis il faut configurer `lint-staged` en ajoutant une section correspondante, subtilement différente entre back et front.
 
-Côté back (ne pas oublier la virgule sur la ligne d'avant !) :
+Côté back (placer cela n'importe où, par exemple à la fin du fichier, avant l'accolade fermante du JSON, sans oublier la virgule sur la ligne d'avant !) :
 
     ...
     "lint-staged": {
@@ -212,6 +212,18 @@ Côté back (ne pas oublier la virgule sur la ligne d'avant !) :
       ]
     }
     ...
+
+Il faut aussi, encore, rajouter une clé `precommit` sous `scripts`, qui va servir à lancer `lint-staged` si on fait `npm run precommit` :
+
+    ...
+    "scripts": {
+      "lint": "npx eslint --fix .",
+      "precommit": "lint-staged",
+      "start": "npx nodemon app",
+      "test: "echo \"Error: no test specified\" && exit 1"
+    }
+    ...
+
 
 Côté front :
 
@@ -223,6 +235,8 @@ Côté front :
       ]
     }
     ...
+
+Là aussi, ajouter `"precommit": "lint-staged",` sous la clé `scripts`.
 
 En gros, on indique à `lint-staged` de lancer ESLint en mode auto-fix, et de relancer `git add` pour qu'il ajoute les fichiers après avoir fait ses corrections automatiques.
 
