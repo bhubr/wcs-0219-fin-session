@@ -186,6 +186,14 @@ Deuxième moment de vérité : avec Lerna, lancer le script `lint` sur le front 
 
 Cela vous permet à tout moment de _linter_ votre code en ligne de commande.
 
+### Assouplir les règles AirBnB
+
+À propos des règles AirBnB : celles-ci sont très strictes par défaut (oui, oui, encore plus que dans les projets, c'est possible !). Par exemple, une règle spécifie que tous les fichiers contenant du JSX (les composants React) doivent avoir l'extension `.jsx` au lieu de `.js`.
+
+J'avais, sur les projets, désactivé certaines règles ("rules") en les spécifiant sous l'objet `rules` de `back/.eslintrc.json` ou `front/package.json` de vos projets.
+
+**Je ne pense pas, avec le recul, que ce soit une très bonne idée**. Sachant qu'un standard c'est fait pour être, justement, standard, les entreprises sont probablement strictes sur les règles AirBnB. Vous pouvez reprendre ces "rules" pour vos mini-projets, mais soyez prévenus, il vous faudra peut-être changer quelques habitudes, suivant l'entreprise où vous travaillerez (par exemple, mettre une virgule après le dernier item d'un tableau ou objet, comme le demande la règle `comma-dangle`).
+
 ## Installation et configuration de `lint-staged`
 
 Sous `back`, puis sous `front`, on va installer le module `lint-staged`, qui lance ESLint sur les fichiers "staged" (= ajoutés avec `git add`). C'est pourquoi il ne faudra pas oublier de refaire `git add` après les corrections d'erreurs ESLint !
