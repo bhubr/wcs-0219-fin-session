@@ -126,7 +126,13 @@ Enfin `--stream` permet d'afficher les `console.log` des applications, au fur et
 
 ### Côté back
 
-    eslint --init
+Installer ESLint :
+
+    npm install --save-dev eslint
+
+Puis créer son fichier de configuration :
+
+    npx eslint --init
 
 Choisir:
 * To check syntax, find problems, and enforce code style 
@@ -156,7 +162,7 @@ On peut alors lancer `npm run lint` (ou `yarn lint`) pour lancer ESLint en mode 
 
 ESLint est déjà installé et pré-configuré par CRA (Create React App), mais est assez "laxiste" par défaut. On va initialiser une configuration qui va prendre le pas sur celle par défaut de CRA.
 
-    eslint --init
+    npx eslint --init
 
 Choisir :
 * To check syntax, find problems, and enforce code style 
