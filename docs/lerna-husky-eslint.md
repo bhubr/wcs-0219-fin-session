@@ -120,7 +120,7 @@ Petite explication : `npx` permet de lancer une commande d'un module installé d
 `npx lerna run <script>` permet de spécifier un _script_ à exécuter sur tous les packages référencés dans `lerna.json`. `<script>` est à remplacer par un paramètre, qui correspond à une clé se trouvant dans l'objet
 `scripts` des `package.json` des dossiers `front` et `back`.
 
-Enfin `--stream` permet d'afficher les `console.log` des applications, au fur et à mesure qu'ils sont générés. Sans ce paramètre, ils seraitent affichés seulement à la fin d'une app : sauf que l'application serveur, ou même le mini serveur généré par Create React App, ne sont jamais censés "quitter" : on les interrompt avec Ctrl+C (sortie forcée), ce qui fait que sans `--stream`, `npx lerna run start` n'affiche rien.
+Enfin `--stream` permet d'afficher les `console.log` des applications, au fur et à mesure qu'ils sont générés. Sans ce paramètre, ils seraitent affichés seulement à la fin d'une app : sauf que l'application serveur, ou même le mini serveur généré par Create React App, ne sont jamais censés "quitter" : on les interrompt avec Ctrl+C (sortie forcée), ce qui fait que sans `--stream`, `npx lerna run start` n'affiche rien.
 
 ## Installation de ESLint
 
@@ -180,7 +180,7 @@ Deuxième moment de vérité : avec Lerna, lancer le script `lint` sur le front 
 
 Cela vous permet à tout moment de _linter_ votre code en ligne de commande.
 
-## Installation et configuration de `lint-staged`
+## Installation et configuration de `lint-staged`
 
 Sous `back`, puis sous `front`, on va installer le module `lint-staged`, qui lance ESLint sur les fichiers "staged" (= ajoutés avec `git add`). C'est pourquoi il ne faudra pas oublier de refaire `git add` après les corrections d'erreurs ESLint !
 
