@@ -142,15 +142,13 @@ Les modules nécessaires à la configuration d'ESLint vont s'installer automatiq
 
 Vous pouvez aussi ajouter une clé `lint` dans les `scripts` du `package.json` qu'on a déjà modifiés pour y ajouter `start` :
 
-```
-  ...
-  "scripts": {
-    "lint": "npx eslint --fix .",
-    "start": "npx nodemon app",
-    "test: "echo \"Error: no test specified\" && exit 1"
-  }
-  ...
-```
+    ...
+    "scripts": {
+      "lint": "npx eslint --fix .",
+      "start": "npx nodemon app",
+      "test: "echo \"Error: no test specified\" && exit 1"
+    }
+    ...
 
 On peut alors lancer `npm run lint` (ou `yarn lint`) pour lancer ESLint en mode "auto-fix" (`--fix`) sur le répertoire courant (`.`).
 
@@ -180,3 +178,62 @@ Deuxième moment de vérité : avec Lerna, lancer le script `lint` sur le front 
 
     npx lerna run lint
 
+Cela vous permet à tout moment de _linter_ votre code en ligne de commande.
+
+## Installation et configuration de `lint-staged`
+
+Sous `back`, puis sous `front`, on va installer le module `lint-staged`, qui lance ESLint sur les fichiers "staged" (= ajoutés avec `git add`). C'est pourquoi il ne faudra pas oublier de refaire `git add` après les corrections d'erreurs ESLint !
+
+    npm i --save-dev lint-staged
+
+Puis il faut configurer `lint-staged` en ajoutant une section correspondante, subtilement différente entre back et front.
+
+Côté back (ne pas oublier la virgule sur la ligne d'avant !) :
+
+    ...
+    "lint-staged": {
+      "**/*.js": [
+        "npx eslint --fix",
+        "git add"
+      ]
+    }
+    ...
+
+Côté front :
+
+    ...
+    "lint-staged": {
+      "src/**/*.js": [
+        "npx eslint --fix",
+        "git add"
+      ]
+    }
+    ...
+
+En gros, on indique à `lint-staged` de lancer ESLint en mode auto-fix, et de relancer `git add` pour qu'il ajoute les fichiers après avoir fait ses corrections automatiques.
+
+## Installation et configuration de Husky
+
+À la racine :
+
+    npm i --save-dev husky
+
+Enfin, on va indiquer à Husky de lancer `lint-staged` sur le hook de pré-commit, en ajoutant la section `husky` sous les `devDependencies`, dans le `package.json` situé **à la racine** :
+
+    ...
+    "devDependencies": {
+        "husky": "^2.3.0",
+        "lerna": "^3.14.1"
+      },
+      "husky": {
+        "hooks": {
+          "pre-commit": "npx lerna run --concurrency 1 --stream precommit"
+        }
+      }
+    ...
+
+Si on regarde le contenu de `hooks`, cela lance lerna : tour à tour sur `back` et `front` (`--concurrency 1`), avec l'affichage de la console (`--stream`), sur le hook de `precommit`.
+
+Pour tester que tout fonctionne, vous pouvez rajouter des erreurs dans un fichier côté back et/ou côté front (comme un `require` d'un module tout en fin de fichier côte back), puis `git add` le tout, et normalement ESLint ne vous laissera pas passer.
+
+Voilà, "c'est tout", enfin, façon de parler !
