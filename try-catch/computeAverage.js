@@ -16,17 +16,4 @@ function computeAverage(numbers) {
   return sum / numbers.length;
 }
 
-try {
-  const numbers = process.argv.slice(2);
-  const average = computeAverage(numbers);
-  console.log('average', average);
-  // console.log(computeAverage([1, 2, 3]));
-  // console.log(computeAverage([]));
-  // console.log(computeAverage());
-  // console.log(computeAverage([1, 2, 3, '4', 'salut']));
-} catch (err) {
-  console.error(err);
-  // process.exit(1);
-}
-console.log('la suite s\'execute normalement');
-// process.exit();
+module.exports = computeAverage;
