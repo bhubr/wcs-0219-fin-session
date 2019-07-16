@@ -18,7 +18,7 @@ Ici, on va configurer Husky pour lancer ESLint sur le hook Git de "pré-commit",
 
 ## Initialisation de l'application React (ou des applications React)
 
-Si vous avez une seule app React, lancez à la racine du repo :
+Si vous avez une seule app React, lancez Create React App (CRA) à la racine du repo :
 
     create-react-app front
 
@@ -76,9 +76,12 @@ Puis on peut tester avec `npm start` que le serveur se lance.
 
 ## Installation de lerna
 
+
 D'abord, **à la racine de votre repo**, initialiser un `package.json`, puis installer Lerna (`--save-dev` pour l'installer en tant que dépendance de développement) :
 
     npm install --save-dev lerna
+
+> Pensez à créer un `.gitignore` à la racine ! Cela fait donc 3 `.gitignore` : un à la racine, un dans `back`, un dans `front` (ce dernier étant généré automatiquement par CRA)
 
 Ensuite, pour fonctionner, Lerna a besoin d'un fichier `lerna.json`, qu'on peut créer en lançant (toujours à la racine du repo):
 
@@ -176,7 +179,7 @@ Choisir :
 
 Vous pouvez ensuite faire les mêmes manipulations que côté back :
 * création d'un `.eslintignore`. Vous pouvez y indiquer `src/serviceWorker.js` pour qu'il ne vous embête pas avec du code généré par défaut par CRA, auquel vous n'avez pas besoin de toucher !
-* ajout d'une clé `lint` dans les `scripts` du `package.json`, avec cette fois-ci : `npx eslint --fix src/` (le code source de l'app étant sous `src`)
+* ajout d'une clé `lint` dans les `scripts` du `package.json`, avec cette fois-ci : `npx eslint --fix src/**/*.js*` (cibler tous les fichiers avec une extension `.js` ou `.jsx`, dans tous les sous-dossiers de `src`)
 
 ### On vérifie que ça marche !
 
