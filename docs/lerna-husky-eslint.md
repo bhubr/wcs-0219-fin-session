@@ -81,7 +81,7 @@ D'abord, **à la racine de votre repo**, initialiser un `package.json`, puis ins
 
     npm install --save-dev lerna
 
-> Pensez à créer un `.gitignore` à la racine ! Cela fait donc 3 `.gitignore` : un à la racine, un dans `back`, un dans `front` (ce dernier étant généré automatiquement par CRA)
+> Pensez à créer un `.gitignore` à la racine, contenant `node_modules` ! Cela fait donc 3 `.gitignore` : un à la racine, un dans `back`, un dans `front` (ce dernier étant généré automatiquement par CRA)
 
 Ensuite, pour fonctionner, Lerna a besoin d'un fichier `lerna.json`, qu'on peut créer en lançant (toujours à la racine du repo):
 
