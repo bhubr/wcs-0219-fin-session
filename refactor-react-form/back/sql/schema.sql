@@ -6,8 +6,10 @@ CREATE TABLE `user` (
   `lastname` varchar(90) DEFAULT NULL,
   `address` varchar(90) DEFAULT NULL,
   `postcode` varchar(90) DEFAULT NULL,
+  `city` varchar(90) DEFAULT NULL,
   `phone` varchar(90) DEFAULT NULL,
-  `subscribe_newsletter` BOOLEAN DEFAULT NULL
+  `avatar` varchar(90) DEFAULT NULL,
+  `subscribeNewsletter` BOOLEAN DEFAULT NULL
 );
 
 -- CREATE TABLE `product` (

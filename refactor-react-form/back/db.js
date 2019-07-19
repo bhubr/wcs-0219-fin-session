@@ -12,7 +12,7 @@ Promise.promisifyAll(connection);
 
 connection.connectAsync()
   .then(() => console.log('connection established', connection.threadId))
-  .catch(err => {
+  .catch((err) => {
     console.log('connection error', err);
   });
 

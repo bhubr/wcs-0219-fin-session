@@ -1,0 +1,1 @@
+mysql -uroot -p -e "create database $1 character set utf8 collate utf8_general_ci; create user if not exists $2@localhost identified by \"$3\"; grant all privileges on $1.* to $2@localhost; flush privileges;"
